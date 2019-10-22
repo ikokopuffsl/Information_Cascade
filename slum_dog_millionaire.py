@@ -26,9 +26,23 @@ class HouseHold():
         return my_choice + string
 
 
-def bayes_prob_update(q, other, stuff):
+def bayes_prob_update(villager, well):
+    q = 0.8
+    not_q = 0.2
+    if well == 1:
+        new_prob = (q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))
+    else:
+        new_prob = (not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3))
 
-    pass
+    return new_prob
+
+def simulation(village):
+    for i in range(15):
+        village[i].p1 = bayes_prob_update(village[i], 1)
+        village[i].p2 = bayes_prob_update(village[i], 2)
+        village[i].p3 = bayes_prob_update(village[i], 3)
+    
+
 
 # TODO: implement how good, middle, and else calculates the P values
 def vary_p_fortune(fortune, well):
@@ -47,11 +61,9 @@ def vary_p_fortune(fortune, well):
     result[arr[1]] = random_num2
     return result
 
-
-def create_village(salvation):
+def create_village(salvation):p_results[1]
     village = []
     for i in range(15): # Create the households
-
         if i < 5:
             p_results = vary_p_fortune("good", salvation)
             family = HouseHold(p_results[0], p_results[1], p_results[2], "good")
@@ -84,6 +96,7 @@ def run_world():
     # Part 1
 
     # Part 2
+
 
     # Part 3
 
