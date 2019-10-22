@@ -14,7 +14,7 @@ class HouseHold():
         self.p3 = p3
         self.type_of_house = type_of_house
         self.final_choice = None
-        
+
     def make_choice(self, choice_val):
         my_choice = "Household {} with p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, self.p1, self.p2, self.p3)
         string = ""
@@ -29,21 +29,24 @@ class HouseHold():
             string = "three\n"
         return my_choice + string
 
-def bayes_prob_update(villager, q):
-    # Calculate all at once so that our p1, p2, and p3 remain the same for one iteration and don't affect each other
-    new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))
-    
-    # Pass by reference, right?
-    village.p1 = new_prob[1]
-    village.p2 = new_prob[2]
-    village.p3 = new_prob[3]
+def bayes_prob_update(villager, actual_well, previous_choices):
+    # Update the probability for the current villager for each of the wells once for each of the previous person
+    for choice in previous_choices:
+        # Need new q depending on the previous villagers choice
+        q = find_q(choice, actual_well)
+        # Calculate all at once so that our p1, p2, and p3 remain the same for one iteration and don't affect each other
+        new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))
+        # Pass by reference, right?
+        village.p1 = new_prob[1]
+        village.p2 = new_prob[2]
+        village.p3 = new_prob[3]
     
 def simulation(village, actual_well):
     neighbor_choice = 0 # Need to modify, what is the first neighbor_choice value?
     neighbor_choices = []
     for villager in village:
-        q = find_q(neighbor_choice, actual_well)
-        bayes_prob_update(villager, q)
+        # q = find_q(neighbor_choice, actual_well)
+        bayes_prob_update(villager, actual_well, neighbor_choices)
 
         # now this will be new choice for the current villager
         choice_value = random.uniform(0,1)
