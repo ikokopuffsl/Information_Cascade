@@ -16,17 +16,23 @@ class HouseHold():
         self.final_choice = None
 
     def make_choice(self, choice_val):
-        my_choice = "Household {} with p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, self.p1, self.p2, self.p3)
+        my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3)
         string = ""
+        min_vals = {}
         if choice_val < self.p1:
+            min_vals["one"] = self.p1
+        if choice_val < self.p2:
+            min_vals["two"] = self.p2
+        if choice_val < self.p3:
+            min_vals["three"] = self.p3
+            
+        string = min(min_vals, key=min_vals.get)
+        if string == "one":
             self.final_choice = 1
-            string = "one\n"
-        elif choice_val < self.p2 and self.p2 < self.p1:
+        elif string == "two":
             self.final_choice = 2
-            string = "two\n"
-        elif choice_val < self.p3 and self.p3 < self.p2:
+        else:
             self.final_choice = 3
-            string = "three\n"
         return my_choice + string
 
 def bayes_prob_update(villager, actual_well, previous_choices):
@@ -79,7 +85,7 @@ def vary_p_fortune(fortune, well):
     result[arr[1]] = random_num2
     return result
 
-def create_village(salvation):p_results[1]
+def create_village(salvation):
     village = []
     for i in range(15): # Create the households
         if i < 5:
@@ -92,7 +98,7 @@ def create_village(salvation):p_results[1]
             p_results = vary_p_fortune("bad", salvation)
             family = HouseHold(p_results[0], p_results[1], p_results[2], " bad")
     
-    village.append(family)
+        village.append(family)
     random.shuffle(village)
     return village
 
@@ -106,10 +112,11 @@ def run_world():
     with open(result_file, "a+")as f:
         f.write("Correct well is: " + str(salvation + 1) + "\n")
     for household in village:
-        choice_value = random.uniform(0,1)
+        
+        choice_value = random.uniform(0,max(household.p1,household.p2,household.p3))
         choice = household.make_choice(choice_value)
         with open(result_file, "a+") as f:
-            f.write(choice)
+            f.write(choice + "\n\n")
             
     # Part 1
 
