@@ -18,11 +18,11 @@ class HouseHold():
         my_choice = "Household {} with p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, self.p1, self.p2, self.p3)
         string = ""
         if choice_val < self.p1:
-            string += "one\n"
-        elif choice_val < self.p2:
-            string += "two\n"
-        elif choice_val < self.p3:
-            string += "three\n"
+            string = "one\n"
+        elif choice_val < self.p2 and self.p2 < self.p1:
+            string = "two\n"
+        elif choice_val < self.p3 and self.p3 < self.p2:
+            string = "three\n"
         return my_choice + string
 
 
