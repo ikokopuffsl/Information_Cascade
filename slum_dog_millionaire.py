@@ -35,6 +35,14 @@ class HouseHold():
             self.final_choice = 3
         return my_choice + string
 
+# Returns the utility ofa given well
+# takes the villagers p for a certain well.
+# randomizes the distance of each well for each villager
+def get_utility(prob_at_well):
+    # probability at well * util of having water + prob of not having water * util of not having water
+    # + the distance to the well
+    return prob_at_well * .9 + (1-prob_at_well) * .1 + random.randint(1,7)
+
 def bayes_prob_update(villager, actual_well, previous_choices):
     # Update the probability for the current villager for each of the wells once for each of the previous person
     for choice in previous_choices:
