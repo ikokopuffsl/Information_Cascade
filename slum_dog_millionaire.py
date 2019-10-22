@@ -16,13 +16,14 @@ class HouseHold():
     
     def make_choice(self, choice_val):
         my_choice = "Household {} with p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, self.p1, self.p2, self.p3)
-        if choice_val <= self.p1:
-            my_choice += "one\n"
-        elif choice_val <= (self.p2 + self.p1):
-            my_choice += "two\n"
-        else:
-            my_choice += "three\n"
-        return my_choice
+        string = ""
+        if choice_val < self.p1:
+            string += "one\n"
+        elif choice_val < self.p2:
+            string += "two\n"
+        elif choice_val < self.p3:
+            string += "three\n"
+        return my_choice + string
 
 
 def bayes_prob_update(q, other, stuff):
