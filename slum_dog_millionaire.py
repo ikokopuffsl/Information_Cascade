@@ -13,36 +13,53 @@ class HouseHold():
         self.p2 = p2
         self.p3 = p3
         self.type_of_house = type_of_house
+        self.final_choice = None
     
     def make_choice(self, choice_val):
         my_choice = "Household {} with p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, self.p1, self.p2, self.p3)
         string = ""
         if choice_val < self.p1:
+            self.final_choice = 1
             string = "one\n"
         elif choice_val < self.p2 and self.p2 < self.p1:
+            self.final_choice = 2
             string = "two\n"
         elif choice_val < self.p3 and self.p3 < self.p2:
+            self.final_choice = 3
             string = "three\n"
         return my_choice + string
 
 
-def bayes_prob_update(villager, well):
-    q = 0.8
-    not_q = 0.2
-    if well == 1:
-        new_prob = (q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))
-    else:
-        new_prob = (not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3))
-
-    return new_prob
-
-def simulation(village):
-    for i in range(15):
-        village[i].p1 = bayes_prob_update(village[i], 1)
-        village[i].p2 = bayes_prob_update(village[i], 2)
-        village[i].p3 = bayes_prob_update(village[i], 3)
+def bayes_prob_update(villager, q):
+    # Calculate all at once so that our p1, p2, and p3 remain the same for one iteration and don't affect each other
+    new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))
+    
+    # Pass by reference, right?
+    village.p1 = new_prob[1]
+    village.p2 = new_prob[2]
+    village.p3 = new_prob[3]
     
 
+def simulation(village, actual_well):
+    neighbor_choice = 0 # Need to modify, what is the first neighbor_choice value?
+    neighbor_choices = []
+    for villager in village:
+        q = find_q(neighbor_choice, actual_well)
+        bayes_prob_update(villager, q)
+
+        # now this will be new choice for the current villager
+        choice_value = random.uniform(0,1)
+        villager.make_choice(choice_value)
+        neighbor_choice = villager.final_choice
+        neighbor_choices.append(neighbor_choice)
+
+    return neighbor_choices    
+
+def find_q(neighbor_choice, actual_well):
+    if actual_well == neighbor_choice:
+        return 0.8
+    else: 
+        return 0.1
 
 # TODO: implement how good, middle, and else calculates the P values
 def vary_p_fortune(fortune, well):
@@ -74,7 +91,7 @@ def create_village(salvation):p_results[1]
             p_results = vary_p_fortune("bad", salvation)
             family = HouseHold(p_results[0], p_results[1], p_results[2], " bad")
     
-        village.append(family)
+    village.append(family)
     random.shuffle(village)
     return village
 
