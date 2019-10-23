@@ -43,28 +43,42 @@ def get_utility(prob_at_well):
     # + the distance to the well
     return prob_at_well * .9 + (1-prob_at_well) * .1 + random.randint(1,7)
 
-def bayes_prob_update(villager, actual_well, previous_choices):
+def bayes_prob_update(villager, previous_choices):
     # Update the probability for the current villager for each of the wells once for each of the previous person
     for choice in previous_choices:
         # Need new q depending on the previous villagers choice
-        q = find_q(choice, actual_well)
+        q = 0.8
+        not_q = (1-q)/2
         # Calculate all at once so that our p1, p2, and p3 remain the same for one iteration and don't affect each other
-        new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))
+        # new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))  
+        if choice == 1:
+            p1 = ((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3)))
+            p2 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+        if choice == 2:
+            p1 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3)))
+            p3 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+        if choice == 3:
+            p1 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3)))
         # Pass by reference, right?
-        villager.p1 = new_prob[1]
-        villager.p2 = new_prob[2]
-        villager.p3 = new_prob[3]
+        villager.p1 = p1
+        villager.p2 = p2
+        villager.p3 = p3
     
-def simulation(village, actual_well):
+def simulation(village):
     # The first villager just makes a choice
-    village[1].make_choice()
+    choice_value = random.uniform(0,1)
+    village[1].make_choice(choice_value)
     neighbor_choice = village[1].final_choice 
     neighbor_choices = [neighbor_choice]
 
     for villager in village:
         if villager.final_choice != None: continue  # Skip the first one
 
-        bayes_prob_update(villager, actual_well, neighbor_choices)
+        bayes_prob_update(villager, neighbor_choices)
 
         # now this will be new choice for the current villager
         choice_value = random.uniform(0,1)
@@ -74,11 +88,11 @@ def simulation(village, actual_well):
 
     return neighbor_choices    
 
-def find_q(neighbor_choice, actual_well):
-    if actual_well == neighbor_choice:
-        return 0.8
-    else: 
-        return 0.1
+# def find_q(neighbor_choice, actual_well):
+#     if actual_well == neighbor_choice:
+#         return 0.8
+#     else: 
+#         return 0.1
 
 # TODO: implement how good, middle, and else calculates the P values
 def vary_p_fortune(fortune, well):
@@ -133,7 +147,7 @@ def run_world():
     # Part 1
 
     # Part 2
-
+    print(simulation(village))
 
     # Part 3
 
