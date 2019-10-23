@@ -233,7 +233,8 @@ def run_world():
     # Part 3
 
     # Part 4
-    ad_hoc_connections(village)
+    # ad_hoc_connections(village)
+    one_cycle(village)
     print(simulation4(village, result_file))
 
 
