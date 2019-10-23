@@ -174,7 +174,11 @@ def one_cycle(village):
         village[i].neighbors_list.append(i-1)
 
 def two_cycle(village):
-    pass
+    for i in range(len(village)):
+        village[i].neighbors_list.append((i + 1) % len(village))
+        village[i].neighbors_list.append((i + 2)  % len(village))
+        village[i].neighbors_list.append((i - 1) % len(village))
+        village[i].neighbors_list.append((i - 2) % len(village))
 
 # TODO: implement how good, middle, and else calculates the P values
 def vary_p_fortune(fortune, well):
@@ -234,7 +238,7 @@ def run_world():
 
     # Part 4
     # ad_hoc_connections(village)
-    one_cycle(village)
+    two_cycle(village)
     print(simulation4(village, result_file))
 
 
