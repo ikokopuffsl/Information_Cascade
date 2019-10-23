@@ -170,15 +170,8 @@ def ad_hoc_connections(village):
                 villager.neighbors_list.append(neighbor)
 
 def one_cycle(village):
-    for villager in village:
-        village
-
-        for _ in range(random.randint(1,15)):
-            neighbor = random.randint(1,15)
-            if villager.neighbors_list in neighbor:
-                continue
-            else:
-                villager.neighbors_list.append(neighbor)
+    for i in range(1,15):
+        village[i].neighbors_list.append(i-1)
 
 def two_cycle(village):
     pass
