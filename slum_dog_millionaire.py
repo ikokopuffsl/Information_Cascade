@@ -19,6 +19,7 @@ class HouseHold():
         my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3)
         string = ""
         min_vals = {}
+        utils = {}
         if choice_val < self.p1:
             min_vals["one"] = self.p1
         if choice_val < self.p2:
@@ -27,6 +28,9 @@ class HouseHold():
             min_vals["three"] = self.p3
             
         string = min(min_vals, key=min_vals.get)
+        utils["one"] = get_utility(self.p1)
+        utils["two"] = get_utility(self.p2)
+        utils["three"] = get_utility(self.p3)
         if string == "one":
             self.final_choice = 1
         elif string == "two":
@@ -52,17 +56,17 @@ def bayes_prob_update(villager, previous_choices):
         # Calculate all at once so that our p1, p2, and p3 remain the same for one iteration and don't affect each other
         # new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))  
         if choice == 1:
-            p1 = ((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3)))
-            p2 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
-            p3 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p1 = ((q*villager.p1) / ((q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((not_q*villager.p2) / ((not_q*villager.p1) + (q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((not_q*villager.p3) / ((not_q*villager.p1) + (not_q*villager.p2) + (q*villager.p3)))
         if choice == 2:
-            p1 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
-            p2 = ((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3)))
-            p3 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p1 = ((not_q*villager.p1) / ((q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((q*villager.p2) / ((not_q*villager.p1) + (q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((not_q*villager.p3) / ((not_q*villager.p1) + (not_q*villager.p2) + (q*villager.p3)))
         if choice == 3:
-            p1 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
-            p2 = ((not_q*villager.p1) / ((not_q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
-            p3 = ((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3)))
+            p1 = ((not_q*villager.p1) / ((q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((not_q*villager.p2) / ((not_q*villager.p1) + (q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((q*villager.p3) / ((not_q*villager.p1) + (not_q*villager.p2) + (q*villager.p3)))
         # Pass by reference, right?
         villager.p1 = p1
         villager.p2 = p2
