@@ -14,6 +14,7 @@ class HouseHold():
         self.p3 = p3
         self.type_of_house = type_of_house
         self.final_choice = None
+        self.neighbors_list[]
 
     def make_choice(self, choice_val):
         my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3)
@@ -94,11 +95,77 @@ def simulation(village, result_file):
 
     return neighbor_choices    
 
-# def find_q(neighbor_choice, actual_well):
-#     if actual_well == neighbor_choice:
-#         return 0.8
-#     else: 
-#         return 0.1
+def simulation4(village, result_file):
+    # The first villager just makes a choice
+    choice_value = random.uniform(0,max(village[0].p1,village[0].p2,village[0].p3))
+    choice = village[0].make_choice(choice_value)
+    neighbor_choice = village[0].final_choice 
+    neighbor_choices = [neighbor_choice]
+    with open(result_file, "a+") as f:
+            f.write(choice + "\n\n")
+
+    for i in range(1,len(village)):
+        bayes_prob_update4(village[i], village[i].neigbors_list, village)
+
+        # now this will be new choice for the current villager
+        choice_value = random.uniform(0,max(village[i].p1,village[i].p2,village[i].p3))
+        choice = village[i].make_choice(choice_value)
+        neighbor_choice = village[i].final_choice
+        neighbor_choices.append(neighbor_choice)
+        with open(result_file, "a+") as f:
+            f.write(choice + "\n\n")
+
+    return neighbor_choices   
+
+def bayes_prob_update4(villager, neighbors, village):
+    # Go through each of the neighbors
+    for neighbor in neighbors:
+        if village[neighbor].final_choice = None continue # If no neighbor, then pass
+
+        # Our predetermined neighbor trust value
+        q = 0.8
+        not_q = (1-q)/2
+
+
+        if village[neighbor].final_choice == 1:
+            p1 = ((q*villager.p1) / ((q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((not_q*villager.p2) / ((not_q*villager.p1) + (q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((not_q*villager.p3) / ((not_q*villager.p1) + (not_q*villager.p2) + (q*villager.p3)))
+        if village[neighbor].final_choice == 2:
+            p1 = ((not_q*villager.p1) / ((q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((q*villager.p2) / ((not_q*villager.p1) + (q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((not_q*villager.p3) / ((not_q*villager.p1) + (not_q*villager.p2) + (q*villager.p3)))
+        if village[neighbor].final_choice == 3:
+            p1 = ((not_q*villager.p1) / ((q*villager.p1) + (not_q*villager.p2) + (not_q*villager.p3)))
+            p2 = ((not_q*villager.p2) / ((not_q*villager.p1) + (q*villager.p2) + (not_q*villager.p3)))
+            p3 = ((q*villager.p3) / ((not_q*villager.p1) + (not_q*villager.p2) + (q*villager.p3)))
+
+        villager.p1 = p1
+        villager.p2 = p2
+        villager.p3 = p3
+
+def ad_hoc_connections(village):
+    for villager in village:
+        for i in range(random.randint(1,15))
+            neighbor = random.rantint(1,15)
+            if villager.neighbors_list has neighbor:
+                continue
+            else:
+                villager.neighbors_list.append(neighbor)
+
+def one_cycle(village):
+    for villager in village:
+        village
+
+        for i in range(random.randint(1,15))
+            neighbor = random.rantint(1,15)
+            if villager.neighbors_list has neighbor:
+                continue
+            else:
+                villager.neighbors_list.append(neighbor)
+
+def two_cycle(village):
+    pass
 
 # TODO: implement how good, middle, and else calculates the P values
 def vary_p_fortune(fortune, well):
