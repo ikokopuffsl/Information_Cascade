@@ -51,15 +51,19 @@ def bayes_prob_update(villager, actual_well, previous_choices):
         # Calculate all at once so that our p1, p2, and p3 remain the same for one iteration and don't affect each other
         new_prob = (((q*villager.p1) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p2) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))), ((q*villager.p3) / ((q*villager.p1) + (q*villager.p2) + (q*villager.p3))))
         # Pass by reference, right?
-        village.p1 = new_prob[1]
-        village.p2 = new_prob[2]
-        village.p3 = new_prob[3]
+        villager.p1 = new_prob[1]
+        villager.p2 = new_prob[2]
+        villager.p3 = new_prob[3]
     
 def simulation(village, actual_well):
-    neighbor_choice = 0 # Need to modify, what is the first neighbor_choice value?
-    neighbor_choices = []
+    # The first villager just makes a choice
+    village[1].make_choice()
+    neighbor_choice = village[1].final_choice 
+    neighbor_choices = [neighbor_choice]
+
     for villager in village:
-        # q = find_q(neighbor_choice, actual_well)
+        if villager.final_choice != None: continue  # Skip the first one
+
         bayes_prob_update(villager, actual_well, neighbor_choices)
 
         # now this will be new choice for the current villager
