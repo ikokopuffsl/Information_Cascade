@@ -14,46 +14,31 @@ class HouseHold():
         self.p3 = p3
         self.type_of_house = type_of_house
         self.final_choice = None
-        self.neighbors_list = []
+        self.neighbors_list= []
 
-    def get_choice(self, choice_val):
-        utils = {}
+    def make_choice(self, choice_val):
+        my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3)
+        string = ""
         min_vals = {}
-        #
+        utils = {}
         if choice_val < self.p1:
             min_vals["one"] = self.p1
-            utils["one"] = get_utility(self.p1)
         if choice_val < self.p2:
             min_vals["two"] = self.p2
-            utils["two"] = get_utility(self.p2)
         if choice_val < self.p3:
             min_vals["three"] = self.p3
-            utils["three"] = get_utility(self.p3)
             
-        # The choice with the closest prob to our choice
-        mini_prob = min(min_vals, key=min_vals.get)
-        # the choice with max util
-        key = max(utils, key=utils.get)
-        # if our preferred choice is not equal to our choice with max util
-        # and the choice with max util is > 25% better than the preferred
-        # then choice the max util choice
-        if mini_prob != key:
-            if utils[key] > (utils[mini_prob] * 1.25):
-                print("Choice {} has > 25% utility than {} for choice_val == {}\n".format(key,mini_prob, choice_val))
-                return key, utils[key]
-
-        return mini_prob, utils[mini_prob]
-    
-    def make_choice(self, choice_val):
-        string, utility = self.get_choice(choice_val)
-        my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: {} with utility {}".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3, string, utility)     
+        string = min(min_vals, key=min_vals.get)
+        utils["one"] = get_utility(self.p1)
+        utils["two"] = get_utility(self.p2)
+        utils["three"] = get_utility(self.p3)
         if string == "one":
             self.final_choice = 1
         elif string == "two":
             self.final_choice = 2
         else:
             self.final_choice = 3
-        return my_choice
+        return my_choice + string
 
 # Returns the utility ofa given well
 # takes the villagers p for a certain well.
@@ -61,7 +46,7 @@ class HouseHold():
 def get_utility(prob_at_well):
     # probability at well * util of having water + prob of not having water * util of not having water
     # + the distance to the well
-    return prob_at_well * .9 + (1-prob_at_well) * .1 + random.randint(1,15)
+    return prob_at_well * .9 + (1-prob_at_well) * .1 + random.randint(1,7)
 
 def bayes_prob_update(villager, previous_choices):
     # Update the probability for the current villager for each of the wells once for each of the previous person
@@ -135,8 +120,7 @@ def simulation4(village, result_file):
 def bayes_prob_update4(villager, neighbors, village):
     # Go through each of the neighbors
     for neighbor in neighbors:
-        if village[neighbor].final_choice == None: 
-            continue # If no neighbor, then pass
+        if village[neighbor].final_choice = None continue # If no neighbor, then pass
 
         # Our predetermined neighbor trust value
         q = 0.8
@@ -162,9 +146,9 @@ def bayes_prob_update4(villager, neighbors, village):
 
 def ad_hoc_connections(village):
     for villager in village:
-        for _ in range(random.randint(1,15)):
-            neighbor = random.randint(1,15)
-            if villager.neighbors_list in neighbor:
+        for i in range(random.randint(1,15))
+            neighbor = random.rantint(1,15)
+            if villager.neighbors_list has neighbor:
                 continue
             else:
                 villager.neighbors_list.append(neighbor)
@@ -173,9 +157,9 @@ def one_cycle(village):
     for villager in village:
         village
 
-        for _ in range(random.randint(1,15)):
-            neighbor = random.randint(1,15)
-            if villager.neighbors_list in neighbor:
+        for i in range(random.randint(1,15))
+            neighbor = random.rantint(1,15)
+            if villager.neighbors_list has neighbor:
                 continue
             else:
                 villager.neighbors_list.append(neighbor)
