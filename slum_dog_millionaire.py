@@ -68,23 +68,25 @@ def bayes_prob_update(villager, previous_choices):
         villager.p2 = p2
         villager.p3 = p3
     
-def simulation(village):
+def simulation(village, result_file):
     # The first villager just makes a choice
-    choice_value = random.uniform(0,1)
-    village[1].make_choice(choice_value)
-    neighbor_choice = village[1].final_choice 
+    choice_value = random.uniform(0,max(village[0].p1,village[0].p2,village[0].p3))
+    choice = village[0].make_choice(choice_value)
+    neighbor_choice = village[0].final_choice 
     neighbor_choices = [neighbor_choice]
+    with open(result_file, "a+") as f:
+            f.write(choice + "\n\n")
 
-    for villager in village:
-        if villager.final_choice != None: continue  # Skip the first one
-
-        bayes_prob_update(villager, neighbor_choices)
+    for i in range(1,len(village)):
+        bayes_prob_update(village[i], neighbor_choices)
 
         # now this will be new choice for the current villager
-        choice_value = random.uniform(0,1)
-        villager.make_choice(choice_value)
-        neighbor_choice = villager.final_choice
+        choice_value = random.uniform(0,max(village[i].p1,village[i].p2,village[i].p3))
+        choice = village[i].make_choice(choice_value)
+        neighbor_choice = village[i].final_choice
         neighbor_choices.append(neighbor_choice)
+        with open(result_file, "a+") as f:
+            f.write(choice + "\n\n")
 
     return neighbor_choices    
 
@@ -137,17 +139,16 @@ def run_world():
     village = create_village(salvation)
     with open(result_file, "a+")as f:
         f.write("Correct well is: " + str(salvation + 1) + "\n")
-    for household in village:
+    #for household in village:
         
-        choice_value = random.uniform(0,max(household.p1,household.p2,household.p3))
-        choice = household.make_choice(choice_value)
-        with open(result_file, "a+") as f:
-            f.write(choice + "\n\n")
+        # choice_value = random.uniform(0,max(household.p1,household.p2,household.p3))
+        #choice = household.make_choice(choice_value)
+ 
             
     # Part 1
 
     # Part 2
-    print(simulation(village))
+    print(simulation(village, result_file))
 
     # Part 3
 
