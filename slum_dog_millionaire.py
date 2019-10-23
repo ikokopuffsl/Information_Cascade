@@ -14,12 +14,10 @@ class HouseHold():
         self.p3 = p3
         self.type_of_house = type_of_house
         self.final_choice = None
-
-    def make_choice(self, choice_val):
-        my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3)
-        string = ""
-        min_vals = {}
+    def get_choice(self, choice_val):
         utils = {}
+        min_vals = {}
+        
         if choice_val < self.p1:
             min_vals["one"] = self.p1
         if choice_val < self.p2:
@@ -27,10 +25,15 @@ class HouseHold():
         if choice_val < self.p3:
             min_vals["three"] = self.p3
             
+        utils["one"] = get_utility(self.p1) * self.p1
+        utils["two"] = get_utility(self.p2) * self.p2
+        utils["three"] = get_utility(self.p3) * self.p3
         string = min(min_vals, key=min_vals.get)
-        utils["one"] = get_utility(self.p1)
-        utils["two"] = get_utility(self.p2)
-        utils["three"] = get_utility(self.p3)
+        return string
+    
+    def make_choice(self, choice_val):
+        my_choice = "Household {} with choice_val of {} and p1 = {} p2 = {}, and p3 = {} chose well: ".format(self.type_of_house, choice_val, self.p1, self.p2, self.p3)     
+        string = self.get_choice(choice_val)
         if string == "one":
             self.final_choice = 1
         elif string == "two":
