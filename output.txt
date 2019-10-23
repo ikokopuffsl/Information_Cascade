@@ -1,62 +1,38 @@
 Correct well is: 3
-Household middle with choice_val of 0.22840470998139678 and p1 = 0.1635114632008685 p2 = 0.3364885367991315, and p3 = 0.5 chose well: two
+Household middle with choice_val of 0.38932223148421735 and p1 = 0.15042523213040132 p2 = 0.3495747678695986, and p3 = 0.5 chose well: three with utility 7.5
 
-Household  bad with choice_val of 0.06010832838034162 and p1 = 0.3458301965621621 p2 = 0.45416980343783786, and p3 = 0.2 chose well: three
+Correct well is: 3
+Correct well is: 1
+Household middle with choice_val of 0.36626290318959115 and p1 = 0.5 p2 = 0.1859109671465105, and p3 = 0.31408903285348955 chose well: one with utility 9.5
 
-Household middle with choice_val of 0.3516375636756895 and p1 = 0.11669945272097598 p2 = 0.3833005472790241, and p3 = 0.5 chose well: two
+Correct well is: 3
+Household  bad with choice_val of 0.3013269372219154 and p1 = 0.5216609674546434 p2 = 0.2783390325453565, and p3 = 0.2 chose well: one with utility 3.5173287739637145
 
-Household  bad with choice_val of 0.5583794986879859 and p1 = 0.09157660899897886 p2 = 0.7084233910010211, and p3 = 0.2 chose well: two
+Household  bad with choice_val of 0.44396281530321896 and p1 = 0.784205320832859 p2 = 0.015794679167141057, and p3 = 0.2 chose well: one with utility 15.727364256666288
 
-Household good with choice_val of 0.19874786297573035 and p1 = 0.045153943121757925 p2 = 0.15484605687824204, and p3 = 0.8 chose well: three
+Household good with choice_val of 0.46170133135580027 and p1 = 0.1465274152747167 p2 = 0.05347258472528327, and p3 = 0.8 chose well: three with utility 2.74
 
-Household middle with choice_val of 0.2717098475818909 and p1 = 0.34333108275673313 p2 = 0.15666891724326693, and p3 = 0.5 chose well: one
+Household  bad with choice_val of 0.12169940007580488 and p1 = 0.047517909985408335 p2 = 0.07382306993222593, and p3 = 0.12211487074989456 chose well: three with utility 1.1976918965999157
 
-Household good with choice_val of 0.7468688455027561 and p1 = 0.047413721401512954 p2 = 0.15258627859848706, and p3 = 0.8 chose well: three
+Household good with choice_val of 0.40518569927995923 and p1 = 0.5255863531037432 p2 = 0.05060386873314719, and p3 = 0.12121212121212117 chose well: one with utility 14.520469082482995
 
-Household good with choice_val of 0.021041642627287784 and p1 = 0.19567239353166815 p2 = 0.004327606468331746, and p3 = 0.8 chose well: one
+Household good with choice_val of 0.23338460681619255 and p1 = 0.36489855207144295 p2 = 0.028639071751251476, and p3 = 0.12323448435117514 chose well: one with utility 9.391918841657155
 
-Household good with choice_val of 0.7422381804313879 and p1 = 0.07429229018403237 p2 = 0.12570770981596757, and p3 = 0.8 chose well: three
+Household good with choice_val of 0.1344831389308136 and p1 = 0.3333357120736219 p2 = 0.03637173661566198, and p3 = 0.12314364301805034 chose well: one with utility 11.366668569658897
 
-Household middle with choice_val of 0.14314711081175718 and p1 = 0.2655794187803995 p2 = 0.23442058121960052, and p3 = 0.5 chose well: two
+Household  bad with choice_val of 0.6436603895523231 and p1 = 0.9868321089469767 p2 = 0.0370291123787206, and p3 = 0.03506233262861205 chose well: one with utility 10.889465687157582
 
-Household  bad with choice_val of 0.16214748106857058 and p1 = 0.42364393656967886 p2 = 0.37635606343032113, and p3 = 0.2 chose well: three
+Household middle with choice_val of 0.6286793793563092 and p1 = 0.989780213377543 p2 = 0.029181633729827534, and p3 = 0.031021911498422552 chose well: one with utility 2.8918241707020345
 
-Household middle with choice_val of 0.48354379464965935 and p1 = 0.2809938293453757 p2 = 0.21900617065462424, and p3 = 0.5 chose well: three
+Household middle with choice_val of 0.7934468515941395 and p1 = 0.09909754668366397 p2 = 0.0789506796469956, and p3 = 0.888888888888889 chose well: three with utility 4.811111111111111
 
-Household  bad with choice_val of 0.08422150933559776 and p1 = 0.30782589986692444 p2 = 0.4921741001330755, and p3 = 0.2 chose well: three
+Household middle with choice_val of 0.6358385620072742 and p1 = 0.6384085387473272 p2 = 0.04825506581894694, and p3 = 0.11990583800931126 chose well: one with utility 7.610726830997862
 
-Household  bad with choice_val of 0.1644933319802779 and p1 = 0.6686853699821685 p2 = 0.1313146300178314, and p3 = 0.2 chose well: three
+Household good with choice_val of 0.3719480669766761 and p1 = 0.3855109770223566 p2 = 0.06731017547361202, and p3 = 0.12121212121212117 chose well: one with utility 11.408408781617885
 
-Household good with choice_val of 0.6932427106153853 and p1 = 0.0032636152897173912 p2 = 0.19673638471028254, and p3 = 0.8 chose well: three
+Household  bad with choice_val of 0.08142965780573438 and p1 = 0.8124581302652972 p2 = 0.04303929484358656, and p3 = 0.11489966383158295 chose well: three with utility 14.191919731065266
 
-Correct well is: 2
-Household good with choice_val of 0.5781687549790862 and p1 = 0.04578950823622422 p2 = 0.8, and p3 = 0.15421049176377577 chose well: two
+Household middle with choice_val of 0.037099851106597505 and p1 = 0.29771581645920064 p2 = 0.021686621379491462, and p3 = 0.1237298431929295 chose well: three with utility 2.1989838745543437
 
-Household middle with choice_val of 0.4526656988214717 and p1 = 0.48961521816221637 p2 = 0.5, and p3 = 0.010384781837783574 chose well: one
-
-Household middle with choice_val of 0.057908955832894515 and p1 = 0.29138201485028226 p2 = 0.5, and p3 = 0.20861798514971774 chose well: three
-
-Household middle with choice_val of 0.006888933384735119 and p1 = 0.20972683538712522 p2 = 0.5, and p3 = 0.2902731646128748 chose well: one
-
-Household  bad with choice_val of 0.34550337300244155 and p1 = 0.08684588177464328 p2 = 0.2, and p3 = 0.7131541182253567 chose well: three
-
-Household middle with choice_val of 0.42502082752391507 and p1 = 0.4663120400083996 p2 = 0.5, and p3 = 0.03368795999160046 chose well: one
-
-Household middle with choice_val of 0.37689213003498506 and p1 = 0.055807790197845375 p2 = 0.5, and p3 = 0.4441922098021547 chose well: three
-
-Household  bad with choice_val of 0.2501847818997944 and p1 = 0.32915983276701166 p2 = 0.2, and p3 = 0.47084016723298827 chose well: one
-
-Household good with choice_val of 0.6261159677200174 and p1 = 0.12390576178981831 p2 = 0.8, and p3 = 0.07609423821018169 chose well: two
-
-Household good with choice_val of 0.17113414346974834 and p1 = 0.08566304153115059 p2 = 0.8, and p3 = 0.11433695846884939 chose well: two
-
-Household  bad with choice_val of 0.5423577067229809 and p1 = 0.7722731245498522 p2 = 0.2, and p3 = 0.027726875450147848 chose well: one
-
-Household  bad with choice_val of 0.176460078633842 and p1 = 0.5155249540666121 p2 = 0.2, and p3 = 0.2844750459333878 chose well: two
-
-Household  bad with choice_val of 0.35397715292469145 and p1 = 0.5134481030966793 p2 = 0.2, and p3 = 0.2865518969033207 chose well: one
-
-Household good with choice_val of 0.7599867951114295 and p1 = 0.10387825686550796 p2 = 0.8, and p3 = 0.09612174313449195 chose well: two
-
-Household good with choice_val of 0.43628194659246095 and p1 = 0.06088850448236344 p2 = 0.8, and p3 = 0.13911149551763646 chose well: two
+Household middle with choice_val of 0.11064381028284775 and p1 = 0.7904897816436384 p2 = 0.03194680208996345, and p3 = 0.1167339294469703 chose well: three with utility 9.193387143557576
 

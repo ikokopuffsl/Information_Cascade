@@ -120,7 +120,7 @@ def simulation4(village, result_file):
             f.write(choice + "\n\n")
 
     for i in range(1,len(village)):
-        bayes_prob_update4(village[i], village[i].neigbors_list, village)
+        bayes_prob_update4(village[i], village[i].neighbors_list, village)
 
         # now this will be new choice for the current villager
         choice_value = random.uniform(0,max(village[i].p1,village[i].p2,village[i].p3))
@@ -162,9 +162,9 @@ def bayes_prob_update4(villager, neighbors, village):
 
 def ad_hoc_connections(village):
     for villager in village:
-        for _ in range(random.randint(1,15)):
-            neighbor = random.randint(1,15)
-            if villager.neighbors_list in neighbor:
+        for _ in range(random.randint(0,14)): # Random number of neighbors
+            neighbor = random.randint(0,14)     # Give it a random neighbor
+            if neighbor in villager.neighbors_list:
                 continue
             else:
                 villager.neighbors_list.append(neighbor)
@@ -235,10 +235,13 @@ def run_world():
     # Part 1
 
     # Part 2
-    print(simulation(village, result_file))
+    # print(simulation(village, result_file))
 
     # Part 3
 
+    # Part 4
+    ad_hoc_connections(village)
+    print(simulation4(village, result_file))
 
 
 # Returns 1,2, or 3
